@@ -17,6 +17,8 @@ class Listing(models.Model):
         validators=[MinValueValidator(0.01)]
     )
     location =models.CharField(max_length=100)
+    max_guests = models.PositiveIntegerField(validators=[MinValueValidator(1)])
+    amenities =models.JSONField(default=list)
         
-    )
+    
 # Create your models here.

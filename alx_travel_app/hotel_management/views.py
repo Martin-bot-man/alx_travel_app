@@ -78,5 +78,10 @@ class BookingViewSet(viewsets.ModelViewSet):
         property_type = self.request.query_params.get('property_type', None)
         if property_type is not None:
             queryset = queryset.filter(property_type=property_type)
-            
+
+        min_price = self.request.query_params.get('min_price', None)
+        if min_price is not None:
+            queryset =queryset.filter(price_per_night__gte=min_price)    
+
+
 

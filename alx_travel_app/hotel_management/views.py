@@ -57,4 +57,12 @@ class ListingViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)  
 
 
+class BookingViewSet(viewsets.ModelViewSet):
+    '''ViewSet for Booking model providing CRUD operations.
+    list: Get all Bookings
+    create: Create a new Booking
+    retrieve: Get a specific Booking by ID
+    update: update a Booking(PUT)
+    partial_update: Partially update a booking(PATCH)
+    destroy: Delete a booking'''
 

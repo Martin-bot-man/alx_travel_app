@@ -47,5 +47,14 @@ class ListingViewSet(viewsets.ModelViewSet):
         '''Set the owner to the current user when creating a listing. '''
         serializer.save(owner=self.request.user)
 
-        
+    @action(detail=True, methods=['get'])
+    def bookings(self, request, pk = None):
+        """Custom action to get all bookings for a specific listing.
+         URL: /api/listings/{id}/bookings/ """  
+        listing = self.get_object()
+        bookings = listing.bookings.all()
+        serializer = BookingSerializer(bookings, many=True)
+        return Response(serializer.data)  
+
+
 

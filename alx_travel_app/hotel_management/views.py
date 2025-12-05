@@ -66,3 +66,11 @@ class BookingViewSet(viewsets.ModelViewSet):
     partial_update: Partially update a booking(PATCH)
     destroy: Delete a booking'''
 
+    queryset = Listing.objects.all()
+    serializer_class = ListingSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        '''Optionally filter listings based on query parameters.'''
+        queryset = Listing.objects.all()
+

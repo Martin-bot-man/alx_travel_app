@@ -81,7 +81,12 @@ class BookingViewSet(viewsets.ModelViewSet):
 
         min_price = self.request.query_params.get('min_price', None)
         if min_price is not None:
-            queryset =queryset.filter(price_per_night__gte=min_price)    
+            queryset =queryset.filter(price_per_night__gte=min_price)
+
+        max_price = self.request.query_params.get('max_price', None)
+        if max_price is not None:
+            queryset =queryset.filter(price_per_night__lte=max_price)
+                    
 
 
 

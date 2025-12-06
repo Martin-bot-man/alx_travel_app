@@ -91,7 +91,9 @@ class BookingViewSet(viewsets.ModelViewSet):
         if location is not None:
             queryset =queryset.filter(location__icontains=location)
 
-            
+        max_guests = self.request.query_params.get('max_guests', None)
+        if max_guests is not None:
+            queryset =queryset.filter(max_guests__gte=max_guests)    
 
 
 

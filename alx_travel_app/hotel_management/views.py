@@ -86,7 +86,13 @@ class BookingViewSet(viewsets.ModelViewSet):
         max_price = self.request.query_params.get('max_price', None)
         if max_price is not None:
             queryset =queryset.filter(price_per_night__lte=max_price)
-                    
+
+        location = self.request.query_params.get('location', None)  
+        if location is not None:
+            queryset =queryset.filter(location__icontains=location)
+
+            
+
 
 
 

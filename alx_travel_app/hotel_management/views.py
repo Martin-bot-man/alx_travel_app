@@ -96,5 +96,5 @@ class BookingViewSet(viewsets.ModelViewSet):
             queryset =queryset.filter(max_guests__gte=max_guests)    
 
 
-
+        return queryset.order_by('-id')
 

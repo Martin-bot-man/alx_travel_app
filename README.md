@@ -1,3 +1,6 @@
+
+<img width="1248" height="908" alt="image" src="https://github.com/user-attachments/assets/ebef4111-4837-4596-936f-91371f71243c" />
+
 # Property Management API
 
 A production-ready REST API for managing property listings built with Django REST Framework. Features comprehensive CRUD operations, advanced filtering, and interactive API documentation.

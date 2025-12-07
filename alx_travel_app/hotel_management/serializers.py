@@ -4,14 +4,17 @@ from .models import Listing
 
 class ListingSerializer(serializers.ModelSerializer):
     """
-    Main serializer for the Listing model.
+    Serializer for the Listing model.
     """
     
-    # Display readable property type
     property_type_display = serializers.CharField(
         source='get_property_type_display', 
         read_only=True
     )
+    
+    # Add computed fields
+    amenities_count = serializers.ReadOnlyField()
+    price_range = serializers.SerializerMethodField()
     
     class Meta:
         model = Listing
@@ -22,32 +25,17 @@ class ListingSerializer(serializers.ModelSerializer):
             'property_type',
             'property_type_display',
             'price_per_night',
+            'price_range',
             'location',
             'max_guests',
-            'amenities'
+            'amenities',
+            'amenities_count',
+            'is_available',
+            'created_at',
+            'updated_at'
         ]
-        read_only_fields = ['id']
+        read_only_fields = ['id', 'created_at', 'updated_at']
     
-    def validate_price_per_night(self, value):
-        """Validate that price per night is positive."""
-        if value <= 0:
-            raise serializers.ValidationError(
-                "Price per night must be greater than 0."
-            )
-        return value
-    
-    def validate_max_guests(self, value):
-        """Validate that max_guests is at least 1."""
-        if value < 1:
-            raise serializers.ValidationError(
-                "Maximum guests must be at least 1."
-            )
-        return value
-    
-    def validate_amenities(self, value):
-        """Validate that amenities is a list."""
-        if not isinstance(value, list):
-            raise serializers.ValidationError(
-                "Amenities must be a list."
-            )
-        return value
+    def get_price_range(self, obj):
+        """Get the price range category."""
+        return obj.get_price_range()

@@ -319,12 +319,6 @@ python manage.py runserver 8080
 
 This project is licensed under the MIT License.
 
-## 👤 Author
-
-**Martin Muriithi**
-- Built in a 3 AM coding session on a Sunday
-- LinkedIn: [Your LinkedIn Profile]
-- GitHub: [Your GitHub Profile]
 
 ## 🙏 Acknowledgments
 
